@@ -5,11 +5,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <style>[ng-cloak] { opacity: 0; }</style>
   </head>
   <body ng-app="PowerhouseDemo">
-    <main class="demo" ng-controller="PowerhouseController">
+    <main class="demo" ng-controller="PowerhouseController" ng-cloak>
 
       <section class="current">
+        <div class="readout">
+          <div class="sectioned-bar">
+            <div
+              ng-repeat="bar in scene"
+              class="{{bar.type}} bar"
+              ng-style="{ width: bar.percentage + '%' }"
+            ></div>
+          </div>
+        </div>
         <div class="status">
           <div class="score">{{score | number:0}}</div>
           <hr>
@@ -23,18 +34,19 @@
           <div
             ng-repeat="bar in history"
             class="bar-container"
-            ng-class="{ low: bar.value < threshold }"
+            ng-class="{ low: bar.value > threshold }"
           >
             <div
               class="bar"
-              ng-style="{ height: bar.value + '%' }"
+              ng-style="{ height: bar.value / 2 + '%' }"
             ></div>
           </div>
         </div>
       </section>
       
-      <section class="">
-
+      <section class="powered">
+        <label>POWERED</label>
+        <span class="status" ng-class="{ powered: powered }">{{ powered ? "ON" : "OFF" }}</span>
       </section>
 
       <nav class="scenarios">

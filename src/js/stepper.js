@@ -2,7 +2,7 @@ var stepper = function() {
   return {
     restrict: "E",
     template: `
-  <label>{{model}}</label>
+  <input ng-model="model">
   <div class="step-buttons">
     <a ng-click="step(1)">+</a>
     <a ng-click="step(-1)">-</a>

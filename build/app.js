@@ -305,45 +305,61 @@ module.exports = angular.module("PowerhouseDemo", []);
 },{"angular":1}],3:[function(require,module,exports){
 "use strict";
 
-var controller = function controller($scope) {
+var controller = function controller($scope, $interval) {
 
   //base scenarios
-  $scope.scenarios = [{
-    label: "Good",
-    data: {
-      coal: 30,
-      solar: 40,
-      hydro: 24,
-      nuclear: 20,
-      gas: 16
-    }
-  }, { label: "Bad", data: null }, { label: "Ugly", data: null }];
+  $scope.scenarios = require("./scenarios");
 
   $scope.setScene = function (data) {
-    $scope.scene = data;
+    var components = [];
+    var scoring = require("./scoring");
+    var total = 0;
+    for (var key in data) {
+      var component = {
+        type: key,
+        value: data[key] + Math.random() * 2
+      };
+      total += component.value;
+      components.push(component);
+    }
+    components.forEach(function (c) {
+      c.percentage = c.value / total * 100;
+      c.score = c.value * scoring[c.type];
+    });
+    $scope.scene = components;
+    $scope.score = components.reduce(function (t, c) {
+      return t + c.score;
+    }, 0) / components.length / 10;
+
+    //generate a fake history
+    $scope.history = [];
+    var randomize = Math.random() * 40;
+    for (var i = 0; i < 200; i++) {
+      var seed = i + randomize;
+      $scope.history.push({
+        //randomized regular waveform
+        value: (Math.sin(seed / 13) + 1 + Math.abs(Math.sin(seed / 23) * .5) + Math.sin(seed / 7) + Math.random() * .2) * 10 + $scope.score
+      });
+    }
   };
 
-  $scope.scene = $scope.scenarios[0].data;
+  $scope.setScene($scope.scenarios[0].data);
 
   //stats
-  $scope.score = 50;
-  $scope.threshold = 38;
+  $scope.threshold = 90;
   $scope.powered = false;
 
-  //generate a fake history
-  $scope.history = [];
-  for (var i = 0; i < 200; i++) {
-    $scope.history.push({
-      value: Math.abs(Math.sin(i / 8) + Math.random() * .5) * 30 + 30
-    });
-  }
+  //update on threshold change
+  $scope.$watch(function () {
+    $scope.powered = $scope.score < $scope.threshold;
+  });
 };
 
-controller.$inject = ["$scope"];
+controller.$inject = ["$scope", "$interval"];
 
 module.exports = controller;
 
-},{}],4:[function(require,module,exports){
+},{"./scenarios":5,"./scoring":6}],4:[function(require,module,exports){
 "use strict";
 
 var app = require("./app");
@@ -351,13 +367,58 @@ var app = require("./app");
 app.controller("PowerhouseController", require("./controller"));
 app.directive("stepInput", require("./stepper"));
 
-},{"./app":2,"./controller":3,"./stepper":5}],5:[function(require,module,exports){
+},{"./app":2,"./controller":3,"./stepper":7}],5:[function(require,module,exports){
+"use strict";
+
+module.exports = [{
+  label: "Good",
+  data: {
+    coal: 11,
+    solar: 8,
+    hydro: 12,
+    nuclear: 20,
+    gas: 47
+  }
+}, {
+  label: "Bad",
+  data: {
+    coal: 20,
+    solar: 6,
+    hydro: 8,
+    nuclear: 20,
+    gas: 46
+  }
+}, {
+  label: "Ugly",
+  data: {
+    coal: 40,
+    solar: 2,
+    hydro: 8,
+    nuclear: 27,
+    gas: 23
+  }
+}];
+
+},{}],6:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  coal: 41.97 + 79.2,
+  hydro: 0,
+  gas: 23.84 + 7.5,
+  nuclear: 3.3,
+  oil: 34.19 + 7.5,
+  wind: 2.3,
+  solar: .1
+};
+
+},{}],7:[function(require,module,exports){
 "use strict";
 
 var stepper = function stepper() {
   return {
     restrict: "E",
-    template: "\n  <label>{{model}}</label>\n  <div class=\"step-buttons\">\n    <a ng-click=\"step(1)\">+</a>\n    <a ng-click=\"step(-1)\">-</a>\n  </div>\n    ",
+    template: "\n  <input ng-model=\"model\">\n  <div class=\"step-buttons\">\n    <a ng-click=\"step(1)\">+</a>\n    <a ng-click=\"step(-1)\">-</a>\n  </div>\n    ",
     scope: {
       model: "="
     },

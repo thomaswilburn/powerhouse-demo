@@ -1,41 +1,52 @@
-var controller = function($scope) {
+var controller = function($scope, $interval) {
 
   //base scenarios
-  $scope.scenarios = [
-    { 
-      label: "Good",
-      data: {
-        coal: 30,
-        solar: 40,
-        hydro: 24,
-        nuclear: 20,
-        gas: 16
-      }
-    },
-    { label: "Bad", data: null },
-    { label: "Ugly", data: null }
-  ];
+  $scope.scenarios = require("./scenarios");
 
   $scope.setScene = function(data) {
-    $scope.scene = data;
+    var components = [];
+    var scoring = require("./scoring");
+    var total = 0;
+    for (var key in data) {
+      var component = {
+        type: key,
+        value: data[key] + Math.random() * 2
+      };
+      total += component.value;
+      components.push(component);
+    }
+    components.forEach(function(c) {
+      c.percentage = c.value / total * 100;
+      c.score = c.value * scoring[c.type];
+    });
+    $scope.scene = components;
+    $scope.score = components.reduce(function(t, c) { return t + c.score }, 0) / components.length / 10;
+
+    //generate a fake history
+    $scope.history = [];
+    var randomize = Math.random() * 40;
+    for (var i = 0; i < 200; i++) {
+      var seed = i + randomize;
+      $scope.history.push({
+        //randomized regular waveform
+        value: (Math.sin(seed / 13) + 1 + Math.abs(Math.sin(seed / 23) * .5) + Math.sin(seed / 7) + Math.random() * .2) * 10 + $scope.score
+      });
+    }
   };
 
-  $scope.scene = $scope.scenarios[0].data;
+  $scope.setScene($scope.scenarios[0].data);
 
   //stats
-  $scope.score = 50;
-  $scope.threshold = 38;
+  $scope.threshold = 90;
   $scope.powered = false;
 
-  //generate a fake history
-  $scope.history = [];
-  for (var i = 0; i < 200; i++) {
-    $scope.history.push({
-      value: Math.abs(Math.sin(i / 8) + Math.random() * .5) * 30 + 30
-    });
-  }
+  //update on threshold change
+  $scope.$watch(function() {
+    $scope.powered = $scope.score < $scope.threshold;
+  });
+
 }
 
-controller.$inject = ["$scope"];
+controller.$inject = ["$scope", "$interval"];
 
 module.exports = controller;

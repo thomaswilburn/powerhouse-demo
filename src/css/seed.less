@@ -1,31 +1,114 @@
 @import "seattletimes";
-
 @import "stepper";
+
+@sans: "Roboto", @df-sans;
+
+@coal: #333;
+@nuclear: #5f8;
+@hydro: #66f;
+@gas: #846;
+@solar: #de8;
+
+@ok: #344;
+@danger: #732;
+
+main.demo {
+  position: fixed;
+  max-width: 360px;
+  max-height: 720px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding: 16px;
+  font-family: @sans;
+  .display-flex();
+  .flex-direction(column);
+  .justify-content(space-around);
+}
+
+.sectioned-bar {
+  overflow: hidden;
+
+  .bar {
+    height: 30px;
+    float: left;
+    background-image: linear-gradient(to bottom right, fade(white, 20%), fade(black, 20%));
+
+    &.coal { background-color: @coal }
+    &.nuclear { background-color: @nuclear }
+    &.hydro { background-color: @hydro }
+    &.gas { background-color: @gas }
+    &.solar { background-color: @solar }
+  }
+}
 
 .historical {
   .graph {
     .display-flex();
     .align-items(stretch);
     height: 200px;
+    border: 1px solid @df-light-gray;
+    margin: 12px 0;
 
     .bar-container {
       .flex(1);
       position: relative;
 
       &.low {
-        background: gray;
+        background-image: linear-gradient(to bottom, #EEE, #f8f8f8);
 
         .bar {
-          background: red;
+          background: @danger;
         }
       }
 
       .bar {
+        border-radius: 5% 5% 0 0;
         position: absolute;
         bottom: 0;
         width: 100%;
-        background: orange;
+        background: @ok;
       }
     }
+  }
+}
+
+.powered {
+  .display-flex();
+  .justify-content(center);
+  .align-items(center);
+  background: linear-gradient(to right, @df-light-gray, white);
+  padding: 8px;
+
+  label {
+    .flex(1);
+  }
+
+  .status {
+    background: @danger;
+    font-weight: bold;
+    color: white;
+    transition: background .3s linear;
+    padding: 4px 16px;
+
+    &.powered {
+      background: @ok;
+    }
+  }
+}
+
+.scenarios {
+  .display-flex();
+  .justify-content(space-between);
+  padding: 16px 0;
+
+  .scenario {
+    .flex(0 0 30%);
+    text-align: center;
+    padding: 4px 16px;
+    text-transform: uppercase;
+    border: 1px solid @df-blue;
+    cursor: pointer;
   }
 }

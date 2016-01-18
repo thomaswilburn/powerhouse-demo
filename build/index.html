@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Powerhouse Demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body ng-app="PowerhouseDemo">
+    <main class="demo" ng-controller="PowerhouseController">
+
+      <section class="current">
+        <div class="status">
+          <div class="score">{{score | number:0}}</div>
+          <hr>
+          <step-input class="goal" model="threshold"></step-input>
+        </div>
+
+      </section>
+      
+      <section class="historical">
+        <div class="graph">
+          <div
+            ng-repeat="bar in history"
+            class="bar-container"
+            ng-class="{ low: bar.value < threshold }"
+          >
+            <div
+              class="bar"
+              ng-style="{ height: bar.value + '%' }"
+            ></div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="">
+
+      </section>
+
+      <nav class="scenarios">
+        <a
+          ng-repeat="scenario in scenarios"
+          class="scenario"
+          ng-click="setScene(scenario.data)">
+          {{scenario.label}}
+        </a>
+      </nav>
+    </main>
+
+    <script src="app.js" async></script>
+  </body>
+</html>

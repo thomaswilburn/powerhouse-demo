@@ -1,0 +1,34 @@
+@import "flexbox";
+
+step-input {
+  .display-flex();
+  .align-items(stretch);
+
+  label {
+    .flex(1);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, .3);
+    .display-flex();
+    .align-items(center);
+    padding: 10px;
+  }
+
+  .step-buttons {
+    .display-flex();
+    .flex-direction(column);
+
+    a {
+      .display-flex();
+      .align-items(center);
+      .justify-content(center);
+      background-color: white;
+      background-image: linear-gradient(to bottom, fade(white, 80%), fade(black, 10%));
+      border: 1px solid @df-light-gray;
+      padding: 0 10px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #ddd;
+      }
+    }
+  }
+}

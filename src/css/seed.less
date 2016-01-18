@@ -1,0 +1,31 @@
+@import "seattletimes";
+
+@import "stepper";
+
+.historical {
+  .graph {
+    .display-flex();
+    .align-items(stretch);
+    height: 200px;
+
+    .bar-container {
+      .flex(1);
+      position: relative;
+
+      &.low {
+        background: gray;
+
+        .bar {
+          background: red;
+        }
+      }
+
+      .bar {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: orange;
+      }
+    }
+  }
+}

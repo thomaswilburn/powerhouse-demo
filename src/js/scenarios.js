@@ -1,6 +1,6 @@
 module.exports = [
   { 
-    label: "Good",
+    label: "Good scenario",
     data: {
       coal: 11,
       gas: 47,
@@ -10,7 +10,7 @@ module.exports = [
     }
   },
   {
-    label: "Bad",
+    label: "Average scenario",
     data: {
       coal: 20,
       gas: 46,
@@ -20,7 +20,7 @@ module.exports = [
     }
   },
   {
-    label: "Ugly",
+    label: "Bad scenario",
     data: {
       coal: 40,
       gas: 23,

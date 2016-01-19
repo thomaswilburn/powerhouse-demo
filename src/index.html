@@ -12,6 +12,7 @@
     <main class="demo" ng-controller="PowerhouseController" ng-cloak>
 
       <section class="current">
+        <h2 class="section-header">Current fuel mix</h2>
         <div class="readout">
           <div class="sectioned-bar">
             <div
@@ -22,8 +23,9 @@
           </div>
         </div>
         <div class="status">
-          <div class="score">{{score | number:0}}</div>
+          <div class="score">Sustainability score: {{score | number:0}}</div>
           <hr>
+          <h2 class="section-header">Set your tolerance threshold</h2>
           <step-input class="goal" model="threshold"></step-input>
         </div>
 

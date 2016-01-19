@@ -27,6 +27,13 @@ main.demo {
   .justify-content(space-around);
 }
 
+.section-header {
+  margin: 5px 0;
+  font-weight: normal;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
 .sectioned-bar {
   overflow: hidden;
 
@@ -108,7 +115,13 @@ main.demo {
     text-align: center;
     padding: 4px 16px;
     text-transform: uppercase;
-    border: 1px solid @df-blue;
+    font-size: 0.7em;
+    background: @df-blue;
+    color: @df-off-white;
     cursor: pointer;
-  }
+
+    &:hover {
+      background: darken(@df-blue, 10%);
+    }
+
 }

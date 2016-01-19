@@ -310,28 +310,34 @@ main.demo {
   -ms-flex-pack: space-around;
   justify-content: space-around;
 }
+.section-header {
+  margin: 5px 0;
+  font-weight: normal;
+  text-transform: uppercase;
+  font-size: 12px;
+}
 .sectioned-bar {
   overflow: hidden;
 }
 .sectioned-bar .bar {
   height: 30px;
   float: left;
-  background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.2));
+  background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
 }
 .sectioned-bar .bar.coal {
-  background-color: #333;
+  background-color: #15191D;
 }
 .sectioned-bar .bar.nuclear {
-  background-color: #5f8;
+  background-color: #E45635;
 }
 .sectioned-bar .bar.hydro {
-  background-color: #66f;
+  background-color: #457C8F;
 }
 .sectioned-bar .bar.gas {
-  background-color: #846;
+  background-color: #273339;
 }
 .sectioned-bar .bar.solar {
-  background-color: #de8;
+  background-color: #F7A21B;
 }
 .historical .graph {
   display: -webkit-flex;
@@ -407,6 +413,14 @@ main.demo {
   text-align: center;
   padding: 4px 16px;
   text-transform: uppercase;
-  border: 1px solid #0777b3;
+  font-size: 0.7em;
+  background: #0777b3;
+  color: #f8f8f8;
   cursor: pointer;
+}
+.scenarios .scenario:hover {
+  background: #055682;
+}
+.scenarios .scenario:visited {
+  background: black;
 }

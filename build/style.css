@@ -316,6 +316,11 @@ main.demo {
   text-transform: uppercase;
   font-size: 12px;
 }
+.fa-question-circle {
+  float: right;
+  color: #0777b3;
+  font-size: 1.2em;
+}
 .sectioned-bar {
   overflow: hidden;
 }
@@ -360,14 +365,32 @@ main.demo {
   background-image: linear-gradient(to bottom, #EEE, #f8f8f8);
 }
 .historical .graph .bar-container.low .bar {
-  background: #732;
+  background: #8E1E19;
 }
 .historical .graph .bar-container .bar {
   border-radius: 5% 5% 0 0;
   position: absolute;
   bottom: 0;
   width: 100%;
-  background: #344;
+  background: #273339;
+}
+.historical .graph-legend {
+  font-size: 12px;
+}
+.historical .graph-legend .ok-box {
+  width: 10px;
+  height: 10px;
+  margin: 2px 5px;
+  float: left;
+  background-color: #273339;
+}
+.historical .graph-legend .danger-box {
+  width: 10px;
+  height: 10px;
+  margin: 2px 5px;
+  float: left;
+  background-color: #273339;
+  background-color: #8E1E19;
 }
 .powered {
   display: -webkit-flex;
@@ -388,14 +411,14 @@ main.demo {
   flex: 1;
 }
 .powered .status {
-  background: #732;
+  background: #8E1E19;
   font-weight: bold;
   color: white;
   transition: background .3s linear;
   padding: 4px 16px;
 }
 .powered .status.powered {
-  background: #344;
+  background: #273339;
 }
 .scenarios {
   display: -webkit-flex;
@@ -420,7 +443,4 @@ main.demo {
 }
 .scenarios .scenario:hover {
   background: #055682;
-}
-.scenarios .scenario:visited {
-  background: black;
 }

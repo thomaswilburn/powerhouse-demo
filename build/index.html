@@ -1,9 +1,10 @@
 <!doctype html>
 <html>
   <head>
-    <title>Powerhouse Demo</title>
+    <title>Powerhouse demo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <style>[ng-cloak] { opacity: 0; }</style>
@@ -12,7 +13,9 @@
     <main class="demo" ng-controller="PowerhouseController" ng-cloak>
 
       <section class="current">
-        <h2 class="section-header">Current fuel mix</h2>
+        <h2 class="section-header">Current fuel mix 
+          <i class="fa fa-question-circle"></i>
+        </h2>
         <div class="readout">
           <div class="sectioned-bar">
             <div
@@ -23,9 +26,11 @@
           </div>
         </div>
         <div class="status">
-          <div class="score">Sustainability score: {{score | number:0}}</div>
+          <div class="score">Carbon score: {{score | number:0}}</div>
           <hr>
-          <h2 class="section-header">Set your tolerance threshold</h2>
+          <h2 class="section-header">Set your carbon limit 
+            <i class="fa fa-question-circle"></i>
+          </h2>
           <step-input class="goal" model="threshold"></step-input>
         </div>
 
@@ -44,6 +49,10 @@
             ></div>
           </div>
         </div>
+        <dl class="graph-legend">
+          <dt class="legend-ok"><span class="ok-box"></span> Carbon score below your limit</dt>
+          <dt class="legend-danger"><span class="danger-box"></span> Carbon score exceeds your limit</dt>
+        </dl>
       </section>
       
       <section class="powered">

@@ -4,13 +4,13 @@
 @sans: "Roboto", @df-sans;
 
 @coal: #15191D;
-@nuclear: #E45635;
-@hydro: #457C8F;
 @gas: #273339;
+@hydro: #457C8F;
+@nuclear: #E45635;
 @solar: #F7A21B;
 
-@ok: #344;
-@danger: #732;
+@ok: #273339;
+@danger: #8E1E19;
 
 main.demo {
   position: fixed;
@@ -32,6 +32,12 @@ main.demo {
   font-weight: normal;
   text-transform: uppercase;
   font-size: 12px;
+}
+
+.fa-question-circle {
+  float: right;
+  color: @df-blue;
+  font-size: 1.2em;
 }
 
 .sectioned-bar {
@@ -79,6 +85,22 @@ main.demo {
       }
     }
   }
+  .graph-legend {
+    font-size: 12px;
+
+    .ok-box {
+      width: 10px;
+      height: 10px;
+      margin: 2px 5px;
+      float: left;
+      background-color: @ok;
+    }
+
+    .danger-box {
+      .ok-box;
+      background-color: @danger;
+    }
+  }
 }
 
 .powered {
@@ -123,5 +145,5 @@ main.demo {
     &:hover {
       background: darken(@df-blue, 10%);
     }
-
+  }
 }

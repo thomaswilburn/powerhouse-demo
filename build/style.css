@@ -316,6 +316,11 @@ main.demo {
   text-transform: uppercase;
   font-size: 12px;
 }
+.region {
+  border: 1px solid #e0e0e0;
+  padding: 5px;
+  margin: 2px;
+}
 .fa-question-circle {
   float: right;
   color: #0777b3;

@@ -20,9 +20,11 @@
 
       <section class="current">
         <h2 class="section-header">Current fuel mix 
-          <i class="fa fa-question-circle"></i>
+          <info-box>
+This graph shows the current fuel mix for your location, partitioned by type. Each fuel is ranked by our algorithm to arrive at the carbon score below.
+          </info-box>
         </h2>
-        <div class="readout">
+        <div class="readout" ng-click="showMix = !showMix">
           <div class="sectioned-bar">
             <div
               ng-repeat="bar in scene"
@@ -30,12 +32,20 @@
               ng-style="{ width: bar.percentage + '%' }"
             ></div>
           </div>
+          <ul class="mix-popup" ng-show="showMix">
+            <li ng-repeat="s in scene">
+              <span class="{{s.type}} dot"></span>
+              {{s.type}} - {{s.percentage | number:1}}%
+            </li>
+          </ul>
         </div>
         <div class="status">
           <div class="score">Carbon score: {{score | number:0}}</div>
           <hr>
           <h2 class="section-header">Set your carbon limit 
-            <i class="fa fa-question-circle"></i>
+            <info-box>
+              Set your limit using the input below, and power will be delivered to the socket as long as the current carbon score is under that limit.
+            </info-box>
           </h2>
           <step-input class="goal" model="threshold"></step-input>
         </div>

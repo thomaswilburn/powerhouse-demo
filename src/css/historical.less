@@ -1,0 +1,47 @@
+
+.historical {
+  .graph {
+    .display-flex();
+    .align-items(stretch);
+    height: 200px;
+    border: 1px solid @df-light-gray;
+    margin: 12px 0;
+
+    .bar-container {
+      .flex(1);
+      position: relative;
+
+      &.low {
+        background-image: linear-gradient(to bottom, #EEE, #f8f8f8);
+
+        .bar {
+          background: @danger;
+        }
+      }
+
+      .bar {
+        border-radius: 5% 5% 0 0;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: @ok;
+      }
+    }
+  }
+  .graph-legend {
+    font-size: 12px;
+
+    .ok-box {
+      width: 10px;
+      height: 10px;
+      margin: 2px 5px;
+      float: left;
+      background-color: @ok;
+    }
+
+    .danger-box {
+      .ok-box;
+      background-color: @danger;
+    }
+  }
+}

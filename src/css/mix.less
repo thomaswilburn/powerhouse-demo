@@ -1,0 +1,53 @@
+.readout {
+  position: relative;
+}
+
+.sectioned-bar {
+  overflow: hidden;
+
+  .bar {
+    height: 30px;
+    float: left;
+    background-image: linear-gradient(to bottom right, fade(white, 10%), fade(black, 10%));
+
+    &.coal { background-color: @coal }
+    &.nuclear { background-color: @nuclear }
+    &.hydro { background-color: @hydro }
+    &.gas { background-color: @gas }
+    &.solar { background-color: @solar }
+  }
+}
+
+.mix-popup {
+  z-index: 999;
+  position: absolute;
+  top: calc(~"100% + 8px");
+  left: 10px;
+  right: 10px;
+  background: white;
+  padding: 8px;
+  list-style-type: none;
+  margin: 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
+  font-size: 15px;
+  line-height: 1.5;
+  
+  li {
+    display: block;
+    text-transform: uppercase;
+  }
+  
+  .dot {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: text-bottom;
+    border-radius: 100%;
+    
+    &.coal { background-color: @coal }
+    &.nuclear { background-color: @nuclear }
+    &.hydro { background-color: @hydro }
+    &.gas { background-color: @gas }
+    &.solar { background-color: @solar }
+  }
+}

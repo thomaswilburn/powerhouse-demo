@@ -12,7 +12,6 @@ var stepper = function() {
       model: "="
     },
     link: function(scope, element, attrs) {
-      console.log(scope);
       scope.step = function(increment) {
         scope.model += increment;
       }

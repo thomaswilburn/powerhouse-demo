@@ -24,7 +24,7 @@
 This graph shows the current fuel mix for your location, partitioned by type. Each fuel is ranked by our algorithm to arrive at the carbon score below.
           </info-box>
         </h2>
-        <div class="readout" ng-click="showMix = !showMix">
+        <div class="readout" ng-click="showMix = !showMix" ng-hover="showMix">
           <div class="sectioned-bar">
             <div
               ng-repeat="bar in scene"

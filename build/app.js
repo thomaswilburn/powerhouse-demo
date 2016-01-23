@@ -362,7 +362,30 @@ controller.$inject = ["$scope", "$interval"];
 
 module.exports = controller;
 
-},{"./scenarios":6,"./scoring":7}],4:[function(require,module,exports){
+},{"./scenarios":7,"./scoring":8}],4:[function(require,module,exports){
+"use strict";
+
+module.exports = function () {
+  return {
+    restrict: "A",
+    scope: {
+      toggle: "=ngHover"
+    },
+    link: function link(scope, element, attrs) {
+      element.on("mouseenter", function () {
+        scope.toggle = true;
+        scope.$apply();
+      });
+
+      element.on("mouseleave", function () {
+        scope.toggle = false;
+        scope.$apply();
+      });
+    }
+  };
+};
+
+},{}],5:[function(require,module,exports){
 "use strict";
 
 module.exports = function () {
@@ -375,7 +398,7 @@ module.exports = function () {
   };
 };
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 
 var app = require("./app");
@@ -383,8 +406,9 @@ var app = require("./app");
 app.controller("PowerhouseController", require("./controller"));
 app.directive("stepInput", require("./stepper"));
 app.directive("infoBox", require("./infobox"));
+app.directive("ngHover", require("./hover"));
 
-},{"./app":2,"./controller":3,"./infobox":4,"./stepper":8}],6:[function(require,module,exports){
+},{"./app":2,"./controller":3,"./hover":4,"./infobox":5,"./stepper":9}],7:[function(require,module,exports){
 "use strict";
 
 module.exports = [{
@@ -416,7 +440,7 @@ module.exports = [{
   }
 }];
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -429,7 +453,7 @@ module.exports = {
   solar: .1
 };
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 "use strict";
 
 var stepper = function stepper() {
@@ -440,7 +464,6 @@ var stepper = function stepper() {
       model: "="
     },
     link: function link(scope, element, attrs) {
-      console.log(scope);
       scope.step = function (increment) {
         scope.model += increment;
       };
@@ -450,5 +473,5 @@ var stepper = function stepper() {
 
 module.exports = stepper;
 
-},{}]},{},[5])
+},{}]},{},[6])
 //# sourceMappingURL=app.js.map

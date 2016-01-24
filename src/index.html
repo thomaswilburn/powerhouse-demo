@@ -40,7 +40,10 @@ This graph shows the current fuel mix for your location, partitioned by type. Ea
           </ul>
         </div>
         <div class="status">
-          <div class="score">Carbon score: {{score | number:0}}</div>
+          <div class="score">
+            <label>Carbon score: {{score | number:1}}</label>
+            <spark-line data="sparkline"></spark-line>
+          </div>
           <hr>
           <h2 class="section-header">Set your carbon limit 
             <info-box>

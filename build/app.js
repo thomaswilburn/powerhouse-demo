@@ -356,6 +356,15 @@ var controller = function controller($scope, $interval) {
   $scope.$watch(function () {
     $scope.powered = $scope.score < $scope.threshold;
   });
+
+  $scope.sparkline = [];
+  var length = 80;
+  for (var i = 0; i < length; i++) $scope.sparkline.push(0);
+  $interval(function () {
+    $scope.score += (Math.random() - .5) * .2;
+    $scope.sparkline.push($scope.score);
+    $scope.sparkline = $scope.sparkline.slice(-length);
+  }, 300);
 };
 
 controller.$inject = ["$scope", "$interval"];
@@ -407,8 +416,9 @@ app.controller("PowerhouseController", require("./controller"));
 app.directive("stepInput", require("./stepper"));
 app.directive("infoBox", require("./infobox"));
 app.directive("ngHover", require("./hover"));
+app.directive("sparkLine", require("./sparkline"));
 
-},{"./app":2,"./controller":3,"./hover":4,"./infobox":5,"./stepper":9}],7:[function(require,module,exports){
+},{"./app":2,"./controller":3,"./hover":4,"./infobox":5,"./sparkline":9,"./stepper":10}],7:[function(require,module,exports){
 "use strict";
 
 module.exports = [{
@@ -454,6 +464,46 @@ module.exports = {
 };
 
 },{}],9:[function(require,module,exports){
+"use strict";
+
+module.exports = function () {
+
+  return {
+    restrict: "E",
+    template: "<canvas></canvas>",
+    scope: { data: "=" },
+    link: function link(scope, element, attrs) {
+      element = element[0];
+      var canvas = element.querySelector("canvas");
+      var bounds = element.getBoundingClientRect();
+      canvas.width = bounds.width;
+      canvas.height = bounds.height;
+      var context = canvas.getContext("2d");
+      scope.$watch(function () {
+        var max = Math.max.apply(null, scope.data);
+        var min = Math.min.apply(null, scope.data.filter(function (n) {
+          return n;
+        }));
+        var range = max - min;
+        if (range < 1) range = 1;
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.beginPath();
+        var start = canvas.height - (scope.data[scope.data.length - 1] - min) / range * canvas.height;
+        context.moveTo(0, start);
+        for (var i = scope.data.length - 1; i >= 0; i--) {
+          if (!scope.data[i]) break;
+          var x = canvas.width - i * (canvas.width / scope.data.length);
+          var y = canvas.height - (scope.data[i] - min) / range * canvas.height;
+          context.lineTo(x, y);
+        }
+        context.strokeStyle = "#333";
+        context.stroke();
+      });
+    }
+  };
+};
+
+},{}],10:[function(require,module,exports){
 "use strict";
 
 var stepper = function stepper() {

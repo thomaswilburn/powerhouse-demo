@@ -21,20 +21,23 @@
 .mix-popup {
   z-index: 999;
   position: absolute;
-  top: calc(~"100% + 8px");
+  top: 100%;
   left: 10px;
   right: 10px;
   background: white;
-  padding: 8px;
+  padding: 16px 8px;
   list-style-type: none;
   margin: 0;
   box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
   font-size: 15px;
-  line-height: 1.5;
+  line-height: 2;
+  overflow: hidden;
   
   li {
     display: block;
     text-transform: uppercase;
+    width: 50%;
+    float: left;
   }
   
   .dot {
@@ -49,5 +52,23 @@
     &.hydro { background-color: @hydro }
     &.gas { background-color: @gas }
     &.solar { background-color: @solar }
+  }
+}
+
+.score {
+  .display-flex();
+  padding: 8px 0;
+  
+  label {
+    .flex(1 1 50%);
+  }
+  
+  spark-line {
+    display: inline-block;
+    .flex(0 0 150px);
+    height: 24px;
+    width: 150px;
+    background: linear-gradient(to right, @df-off-white, white);
+    border-left: 1px solid @st-light-green;
   }
 }

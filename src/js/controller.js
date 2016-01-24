@@ -44,6 +44,15 @@ var controller = function($scope, $interval) {
   $scope.$watch(function() {
     $scope.powered = $scope.score < $scope.threshold;
   });
+  
+  $scope.sparkline = [];
+  var length = 80;
+  for (var i = 0; i < length; i++) $scope.sparkline.push(0);
+  $interval(function() {
+    $scope.score += (Math.random() - .5) * .2;
+    $scope.sparkline.push($scope.score);
+    $scope.sparkline = $scope.sparkline.slice(-length);
+  }, 300);
 
 }
 

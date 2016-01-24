@@ -10,6 +10,7 @@
     .bar-container {
       .flex(1);
       position: relative;
+      transition: background .4s linear;
 
       &.low {
         background-image: linear-gradient(to bottom, #EEE, #f8f8f8);
@@ -25,6 +26,7 @@
         bottom: 0;
         width: 100%;
         background: @ok;
+        transition: height .4s ease-in-out, background .4s linear;
       }
     }
   }

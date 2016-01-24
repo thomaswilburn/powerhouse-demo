@@ -41,7 +41,12 @@ This graph shows the current fuel mix for your location, partitioned by type. Ea
         </div>
         <div class="status">
           <div class="score">
-            <label>Carbon score: {{score | number:1}}</label>
+            <label>
+              Carbon score: 
+              <span class="current" ng-class="{ warning: score > threshold - 5, danger: score > threshold }">
+                {{score | number:1}}
+              </span>
+            </label>
             <spark-line data="sparkline"></spark-line>
           </div>
           <hr>
@@ -58,7 +63,7 @@ This graph shows the current fuel mix for your location, partitioned by type. Ea
       <section class="historical">
         <div class="graph">
           <div
-            ng-repeat="bar in history"
+            ng-repeat="bar in history track by $index"
             class="bar-container"
             ng-class="{ low: bar.value > threshold }"
           >

@@ -306,6 +306,7 @@ step-input .step-buttons a:hover {
   -ms-flex: 1;
   flex: 1;
   position: relative;
+  transition: background .4s linear;
 }
 .historical .graph .bar-container.low {
   background-image: linear-gradient(to bottom, #EEE, #f8f8f8);
@@ -319,6 +320,7 @@ step-input .step-buttons a:hover {
   bottom: 0;
   width: 100%;
   background: #273339;
+  transition: height 0.4s ease-in-out, background 0.4s linear;
 }
 .historical .graph-legend {
   font-size: 12px;
@@ -414,19 +416,36 @@ step-input .step-buttons a:hover {
   padding: 8px 0;
 }
 .score label {
-  -webkit-flex: 1 1 50%;
-  -ms-flex: 1 1 50%;
-  flex: 1 1 50%;
+  -webkit-flex: 1 0 50%;
+  -ms-flex: 1 0 50%;
+  flex: 1 0 50%;
+  text-align: center;
+  white-space: nowrap;
+  padding-right: 16px;
+}
+.score .current {
+  font-weight: bold;
+  color: #080;
+}
+.score .current.warning {
+  color: #AA8800;
+}
+.score .current.danger {
+  color: #990000;
 }
 .score spark-line {
   display: inline-block;
-  -webkit-flex: 0 0 150px;
-  -ms-flex: 0 0 150px;
-  flex: 0 0 150px;
+  -webkit-flex: 0 1 50%;
+  -ms-flex: 0 1 50%;
+  flex: 0 1 50%;
   height: 24px;
   width: 150px;
   background: linear-gradient(to right, #f8f8f8, white);
   border-left: 1px solid #b5bfa9;
+}
+.score spark-line canvas {
+  width: 100%;
+  height: 24px;
 }
 info-box {
   position: relative;
@@ -450,7 +469,7 @@ info-box .dialog {
 main.demo {
   position: fixed;
   max-width: 360px;
-  max-height: 100vh;
+  max-height: 720px;
   width: 100%;
   height: 100%;
   top: 0;

@@ -1,16 +1,39 @@
 
 .historical {
+  
   .graph {
     .display-flex();
     .align-items(stretch);
     height: 200px;
     border: 1px solid @df-light-gray;
-    margin: 12px 0;
+    margin: 12px 0 18px;
 
     .bar-container {
       .flex(1);
       position: relative;
       transition: background .4s linear;
+      
+      &::after {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        white-space: nowrap;
+        font-size: 10px;
+        color: @df-middle-gray;
+        transform: translateX(-50%);
+      }
+      
+      &[data-index="50"]::after {
+        content: "-6 hrs";
+      }
+      
+      &[data-index="100"]::after {
+        content: "-12 hrs";
+      }
+      
+      &[data-index="150"]::after {
+        content: "-18 hrs";
+      }
 
       &.low {
         background-image: linear-gradient(to bottom, #EEE, #f8f8f8);

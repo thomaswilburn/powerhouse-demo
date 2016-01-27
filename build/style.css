@@ -299,7 +299,7 @@ step-input .step-buttons a:hover {
   align-items: stretch;
   height: 200px;
   border: 1px solid #e0e0e0;
-  margin: 12px 0;
+  margin: 12px 0 18px;
 }
 .historical .graph .bar-container {
   -webkit-flex: 1;
@@ -307,6 +307,24 @@ step-input .step-buttons a:hover {
   flex: 1;
   position: relative;
   transition: background .4s linear;
+}
+.historical .graph .bar-container::after {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  white-space: nowrap;
+  font-size: 10px;
+  color: #7e838b;
+  transform: translateX(-50%);
+}
+.historical .graph .bar-container[data-index="50"]::after {
+  content: "-6 hrs";
+}
+.historical .graph .bar-container[data-index="100"]::after {
+  content: "-12 hrs";
+}
+.historical .graph .bar-container[data-index="150"]::after {
+  content: "-18 hrs";
 }
 .historical .graph .bar-container.low {
   background-image: linear-gradient(to bottom, #EEE, #f8f8f8);

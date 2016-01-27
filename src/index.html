@@ -65,6 +65,7 @@ This graph shows the current fuel mix for your location, partitioned by type. Ea
           <div
             ng-repeat="bar in history track by $index"
             class="bar-container"
+            data-index="{{$index}}"
             ng-class="{ low: bar.value > threshold }"
           >
             <div

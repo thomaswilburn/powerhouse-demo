@@ -442,7 +442,6 @@ step-input .step-buttons a:hover {
   padding-right: 16px;
 }
 .score .current {
-  font-weight: bold;
   color: #080;
 }
 .score .current.warning {

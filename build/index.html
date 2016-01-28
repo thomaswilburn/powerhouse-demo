@@ -21,7 +21,7 @@
       <section class="current">
         <h2 class="section-header">Current fuel mix 
           <info-box>
-This graph shows the current fuel mix for your location, partitioned by type. Each fuel is ranked by our algorithm to arrive at the carbon score below.
+This bar chart shows the current fuel mix for your location, partitioned by type. Each fuel is ranked by our algorithm to arrive at the carbon score below.
           </info-box>
         </h2>
         <div class="readout" ng-click="showMix = !showMix" ng-hover="showMix">
@@ -52,7 +52,7 @@ This graph shows the current fuel mix for your location, partitioned by type. Ea
           <hr>
           <h2 class="section-header">Set your carbon limit 
             <info-box>
-              Set your limit using the input below, and power will be delivered to the socket as long as the current carbon score is under that limit.
+              Set your limit using the input below, and power will be delivered to the socket as long as the current carbon score is below that limit.
             </info-box>
           </h2>
           <step-input class="goal" model="threshold"></step-input>
